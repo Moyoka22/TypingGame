@@ -13,17 +13,19 @@ function spanAround(spanDefinition){
     };
 }
 
-function keyPressHandler(e) {
+function keyPressHandler(e,self) {
     let characterPressed = e.key;
     let keyCode = e.keyCode;
     console.log("Expected: " + fullText[index]);
-    console.log("Pressed: " + characterPressed)
+    console.log("Pressed: " + characterPressed);
+    console.log(keyCode);
+    console.log(fullText.codePointAt(index));
     function checkMatchesNext(characterPressed,keyCode){
         if (characterPressed == fullText[index]){
             index++;
             sampleText.innerHTML = spanCorrect(fullText,index);
             if (keyCode == 32){
-                userInputText.value = '';
+                self.value = '';
             }
         }
         
@@ -37,4 +39,6 @@ spanCorrect = function (fullText,end) {
 };
 
 
-userInputText.addEventListener('keypress',keyPressHandler,false);
+userInputText.addEventListener('keypress',function(){
+    keyPressHandler(event,this);
+},false);

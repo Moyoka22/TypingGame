@@ -1,10 +1,22 @@
+const retrieveRandomText = (element) => {
+  number = Math.floor(Math.random() * 5) + 1;
+  return fetch(`../assets/sampleText/sample-${number}.txt`)
+    .then((res) => res.text())
+    .then((data) => {
+      element.innerHTML = data;
+    });
+};
+
 const sampleText = document.getElementById("sample-text");
 const userInputText = document.getElementById("user-text");
-const fullText = sampleText.innerHTML; // TODO : Retrieve a random text file from some repository of sample texts
+let fullText;
+retrieveRandomText(sampleText).then(() => {
+  fullText = sampleText.innerHTML;
+}); // sampleText.innerHTML; // TODO : Retrieve a random text file from some repository of samp
 
 const correctSpanStartTag = '<span class="correct">';
 const incorrectSpanStartTag = '<span class="incorrect">';
-const cursorSpanStartTag = '<span class="incorrect">';
+const cursorSpanStartTag = '<span class="cursor">';
 
 function spanAround(spanDefinition) {
   return function (string, start, end) {
@@ -22,8 +34,13 @@ const spanCorrect = (fullText, end) => {
 const spanCorrectIncorrect = (fullText, endCorrect, endIncorrect) => {
   return (
     spanAround(correctSpanStartTag)(fullText, 0, endCorrect) +
-    spanAround(incorrectSpanStartTag)(fullText, endCorrect, endIncorrect) +
-    fullText.slice(endIncorrect, fullText.length)
+    spanAround(cursorSpanStartTag)(fullText, endCorrect, endCorrect + 1) +
+    spanAround(incorrectSpanStartTag)(
+      fullText,
+      endCorrect + 1,
+      endIncorrect == endCorrect ? endCorrect + 1 : endIncorrect + 1
+    ) +
+    fullText.slice(endIncorrect + 1, fullText.length)
   );
 };
 
@@ -210,6 +227,7 @@ const userInputHandler = (e) => {
   }
   let correctCharPressed = currentAttempt.checkChar(e.key);
   if (correctCharPressed) {
+    userInputText.classList.remove("wrong");
     if (currentAttempt.isWordBoundary()) {
       userInputText.value = "";
     } else if (currentAttempt.isFinished()) {
@@ -217,6 +235,10 @@ const userInputHandler = (e) => {
       refresh(true);
       stopTimer();
     }
+  } else {
+    e.preventDefault();
+    userInputText.value = "";
+    userInputText.classList.add("wrong");
   }
   sampleText.innerHTML = spanCorrectIncorrect(
     fullText,
@@ -248,6 +270,7 @@ const keydownHandler = (e) => {
 };
 const resetButtonHandler = (e) => {
   e.preventDefault();
+  userInputText.classList.remove("wrong");
   t = timer.getInstance();
   t.stop();
   resetUserInput();

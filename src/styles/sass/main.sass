@@ -1,0 +1,57 @@
+
+@import 'fonts'
+@import "_colors"
+*
+    box-sizing: border-box
+
+body
+    font-family: 'Roboto Slab', serif
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 100vh
+
+h1
+    font-family: 'PT Sans',san-serif
+    font-size: 40px
+
+@import 'metrics'        
+
+.container
+    max-width: 600px
+    padding: 25px 0
+    background-color: $color-1
+    border-radius: 2px
+    box-shadow: 0px 0px 10px 2px black
+    h1
+        text-align: center
+        
+    .correct
+        color: $correct-green
+        .cursor
+            text-decoration: underline
+            
+
+    .incorrect
+        color: $incorrect-red
+    
+    .cursor
+        color: $cursor-yellow
+        text-decoration: underline;
+
+.sample-text
+    margin: 25px 2.5%
+    width: 95%
+
+.user-text
+    margin: 0 2.5%
+    width: 95%
+    text-align: center
+    height: 40px
+    &.wrong
+        border: 2px inset red
+
+
+    
+
+

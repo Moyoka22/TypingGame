@@ -1,5 +1,3 @@
-export function Metrics() {
-    constructor(){
-
-}
+export class Metrics {
+  constructor() {}
 }

@@ -11,6 +11,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
@@ -23,10 +26,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
     "babel": "^6.23.0",
-    "babel-loader": "^8.1.0",
+    "dotenv": "^8.2.0",
     "jss": "^10.3.0",
     "jss-preset-default": "^10.3.0"
   }

@@ -1,0 +1,8 @@
+# Development Environment
+.vscode/
+
+# Node Modules
+node_modules/
+
+# Scratch Storage
+scratch/

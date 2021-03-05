@@ -1,20 +1,11 @@
 {
-  "name": "typinggame",
+  "name": "moyoka-typing-game",
   "version": "1.0.0",
   "description": "My first vanilla js project, a game which allows you to type a passage ",
-  "main": "scripts/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "main": "src/index.js",
+  "scripts": {},
+  "author": "Moye Odiase",
   "license": "MIT",
-  "devDependencies": {
-    "browser-sync": "^2.26.7",
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-minify": "^3.1.0",
-    "gulp-sass": "^4.0.2",
-    "sass": "^1.26.3"
-  },
+  "devDependencies": {},
   "dependencies": {}
 }
